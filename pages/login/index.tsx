@@ -60,7 +60,6 @@ function LoginPage() {
             {/* Email */}
             <input
               type="email"
-              className="border p-1"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -69,7 +68,6 @@ function LoginPage() {
             {/* Password */}
             <input
               type="password"
-              className="border p-1"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -77,7 +75,7 @@ function LoginPage() {
 
             <button
               type="submit"
-              className="mx-auto mt-2 w-1/3 rounded-3xl bg-primary p-2 font-bold text-white "
+              className="mx-auto mt-2 rounded-3xl bg-primary px-10 py-2 font-bold text-white "
             >
               Sign In
             </button>
@@ -87,9 +85,9 @@ function LoginPage() {
 
           {/* Link for registration */}
           <p className="flex gap-1">
-            New User?
+            Are you an alumnus?
             <Link href={'/signup'} className=" text-primary underline">
-              Register Here
+              Register here
             </Link>
           </p>
         </div>
