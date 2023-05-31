@@ -1,5 +1,12 @@
-import { Inter } from 'next/font/google';
+import AuthLayout from '@/layouts/AuthLayout';
+import { auth } from '@/firebase/config';
 
 export default function Home() {
-  return <div>Hello</div>;
+  return (
+    <AuthLayout>
+      <p>Landing page</p>
+
+      <button onClick={() => auth.signOut()}>Signout</button>
+    </AuthLayout>
+  );
 }

@@ -1,7 +1,39 @@
+import { FormEvent, useContext, useEffect, useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '@/firebase/config';
+import { AuthContext } from '@/context/AuthContext';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 
 function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { user, loading } = useContext(AuthContext);
+  const router = useRouter();
+
+  // Redirect to homepage when already authenticated
+  useEffect(() => {
+    if (user) router.push('/');
+  }, [user, router]);
+
+  const loginAccount = async (e: FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = await signInWithEmailAndPassword(auth, email, password);
+    } catch (error: any) {
+      console.log(error.code);
+      // auth/user-not-found
+      // auth/wrong-password
+    }
+  };
+
+  // Prevent from displaying the login page
+  // when checking if user is authenticated
+  if (user || loading) return null;
+
   return (
     <div className="flex h-screen">
       <section className="flex h-full w-1/2 flex-col items-center justify-center gap-2 bg-primary">
@@ -18,19 +50,29 @@ function LoginPage() {
 
       <section className="flex h-full w-1/2 flex-col items-center justify-center p-4">
         <div className="flex w-4/5 flex-col justify-center gap-2">
-          {/* Caption */}
           <h1 className="text-3xl font-bold text-red-600">Please Login</h1>
 
           {/* Login section */}
-          <form className="flex flex-col gap-2">
+          <form
+            onSubmit={(e) => loginAccount(e)}
+            className="flex flex-col gap-2"
+          >
             {/* Email */}
-            <input type="email" className="border p-1" placeholder="Email" />
+            <input
+              type="email"
+              className="border p-1"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
             {/* Password */}
             <input
               type="password"
               className="border p-1"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
 
             <button
