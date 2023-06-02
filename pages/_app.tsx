@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { AuthProvider } from '@/context/AuthContext';
+import { AuthProvider } from '@/services/auth/authContext';
 import { Nunito_Sans } from 'next/font/google';
 
 const globalFont = Nunito_Sans({ subsets: ['latin'] });

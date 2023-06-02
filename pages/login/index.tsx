@@ -1,14 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { FormEvent, useContext, useEffect, useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/firebase/config';
-import { AuthContext } from '@/context/AuthContext';
+import { AuthContext } from '@/services/auth/authContext';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
+import { loginUser } from '@/services/auth/authService';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const { user, loading } = useContext(AuthContext);
   const router = useRouter();
@@ -18,16 +20,17 @@ function LoginPage() {
     if (user) router.push('/');
   }, [user, router]);
 
+  useEffect(() => {
+    // Remove existing error messages when typing in input fields
+    if (!error) return;
+    setError('');
+  }, [email, password]);
+
   const loginAccount = async (e: FormEvent) => {
     e.preventDefault();
 
-    try {
-      const response = await signInWithEmailAndPassword(auth, email, password);
-    } catch (error: any) {
-      console.log(error.code);
-      // auth/user-not-found
-      // auth/wrong-password
-    }
+    const error = await loginUser(email, password);
+    setError(error);
   };
 
   // Prevent from displaying the login page
@@ -74,9 +77,11 @@ function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
             />
 
+            {error && <p className="font-bold text-red-500">*{error}</p>}
+
             <button
               type="submit"
-              className="mx-auto mt-2 rounded-3xl bg-primary px-10 py-2 font-bold text-white "
+              className="mx-auto rounded-3xl bg-primary px-10 py-2 font-bold text-white "
             >
               Sign In
             </button>

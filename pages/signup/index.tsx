@@ -3,7 +3,20 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import RegistrationForm from '@/components/RegistrationForm/';
 
+import { useContext, useEffect } from 'react';
+import { AuthContext } from '@/services/auth/authContext';
+import { useRouter } from 'next/router';
+
 function SignupPage() {
+  const { user, loading } = useContext(AuthContext);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user) router.push('/');
+  }, [user, router]);
+
+  if (user || loading) return null;
+
   return (
     <>
       <Head>
