@@ -41,6 +41,7 @@ function LoginPage() {
           src="/bsu-logo.svg"
           alt="alumni-logo"
           className="w-1/2"
+          priority={true}
           width={500}
           height={500}
         />
@@ -87,7 +88,7 @@ function LoginPage() {
           <p className="flex gap-1">
             Are you an alumnus?
             <Link href={'/signup'} className=" text-primary underline">
-              Register here
+              Register here.
             </Link>
           </p>
         </div>

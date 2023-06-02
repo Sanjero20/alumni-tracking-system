@@ -17,7 +17,7 @@ function AuthLayout({ children }: Props) {
   }, [user, loading, router]);
 
   // Prevent from displaying page when not authenticated
-  if (!user || !loading) return null;
+  if (!user || loading) return null;
 
   // Return child components when user is authenticated or still loading
   return <>{children}</>;
