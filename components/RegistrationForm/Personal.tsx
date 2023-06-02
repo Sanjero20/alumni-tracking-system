@@ -1,37 +1,47 @@
-import React, { ChangeEvent, useState } from 'react';
-import { Name, Birthday } from '@/utils/types';
+import React from 'react';
+import { useNameStore } from '@/stores/name';
+import { useAccountStore } from '@/stores/account';
 
 function Personal() {
-  const [name, setName] = useState<Name>();
-  const [birthday, setBirthday] = useState<Birthday>();
-  const [email, setEmail] = useState('');
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-  };
+  const { name, setName } = useNameStore();
+  const { email, handleEmail } = useAccountStore();
+  const { password, handlePassword } = useAccountStore();
 
   return (
     <>
-      <h1 className="text-3xl font-bold">Personal Information</h1>
+      <h1 className="text-xl font-bold">Personal Information</h1>
       <fieldset>
         <label>
           First Name
           <input
             type="text"
-            value={name?.first}
-            onChange={(e) => handleInputChange(e)}
+            name="first"
+            value={name.first}
+            onChange={(e) => setName(e)}
             required
           />
         </label>
 
         <label>
           Middle Name
-          <input type="text" value={name?.middle} required />
+          <input
+            type="text"
+            name="middle"
+            value={name.middle}
+            onChange={(e) => setName(e)}
+            required
+          />
         </label>
 
         <label>
           Last Name
-          <input type="text" value={name?.last} required />
+          <input
+            type="text"
+            name="last"
+            value={name.last}
+            onChange={(e) => setName(e)}
+            required
+          />
         </label>
 
         <label>
@@ -39,7 +49,8 @@ function Personal() {
           <input
             type="Email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => handleEmail(e)}
+            required
           />
         </label>
       </fieldset>

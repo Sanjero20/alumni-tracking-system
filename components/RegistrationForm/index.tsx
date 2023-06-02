@@ -3,9 +3,21 @@ import React, { FormEvent, useState } from 'react';
 // Form Categories
 import Personal from './Personal';
 
+// Stores
+import { useNameStore } from '@/stores/name';
+import { useAccountStore } from '@/stores/account';
+
 function RegistrationForm() {
-  const submitForm = (e: FormEvent) => {
+  // Personal Info
+  const { name } = useNameStore();
+  const { email, password } = useAccountStore();
+
+  const submitForm = async (e: FormEvent) => {
     e.preventDefault();
+
+    console.log(name, email, password);
+
+    // createAccount(account);
   };
 
   return (
@@ -16,6 +28,13 @@ function RegistrationForm() {
       {/* Privacy Consent */}
       {/* Terms and Condition */}
       {/* Submit */}
+
+      <button
+        type="submit"
+        className="rounded-3xl bg-primary px-8 py-2 text-white "
+      >
+        Register
+      </button>
     </form>
   );
 }
