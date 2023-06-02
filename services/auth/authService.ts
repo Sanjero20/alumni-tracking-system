@@ -1,12 +1,13 @@
 import { auth, db } from '@/firebase/config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { loginErrorHandler } from './authErrorHandler';
 
 export const loginUser = async (email: string, password: string) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
     return '';
   } catch (error: any) {
-    return error.code;
+    return loginErrorHandler(error.code);
   }
 };
 

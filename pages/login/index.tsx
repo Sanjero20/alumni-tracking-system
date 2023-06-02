@@ -20,8 +20,8 @@ function LoginPage() {
     if (user) router.push('/');
   }, [user, router]);
 
+  // Remove existing error messages when typing in input fields
   useEffect(() => {
-    // Remove existing error messages when typing in input fields
     if (!error) return;
     setError('');
   }, [email, password]);
@@ -77,7 +77,7 @@ function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            {error && <p className="font-bold text-red-500">*{error}</p>}
+            {error && <p className="font-bold text-red-500">{error}</p>}
 
             <button
               type="submit"
