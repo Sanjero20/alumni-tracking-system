@@ -1,10 +1,6 @@
-export type Account = {
-  id: string;
-  name: string;
-  email: string;
-};
+// Registration
 
-// For account registration
+// Personal Info
 export type Name = {
   first: string;
   middle: string;
@@ -17,7 +13,14 @@ export type Birthday = {
   year: string;
 };
 
-export type RegisterAccount = {
-  name: Name;
-  birthday: Birthday;
+// Complete registration structure
+export type AccountRegister = {
+  personalData: {
+    name: Name;
+    birthday: Birthday;
+  };
+  accountData: {
+    email: string;
+    password: string;
+  };
 };
