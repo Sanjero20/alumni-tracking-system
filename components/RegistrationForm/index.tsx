@@ -1,33 +1,40 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent } from 'react';
 
 // Form Categories
-import Personal from './Personal';
+import PersonalSection from './Personal';
 
 // Stores
-import { useNameStore } from '@/stores/name';
-import { useAccountStore } from '@/stores/account';
+import { usePersonalDataStore } from '@/stores/registration/personal';
+import { useAccountStore } from '@/stores/registration/account';
+
+// Utils
+import { signUpUser } from '@/services/auth/authService';
 
 function RegistrationForm() {
   // Personal Info
-  const { name } = useNameStore();
   const { email, password } = useAccountStore();
+  const { name, birthday } = usePersonalDataStore();
 
   const submitForm = async (e: FormEvent) => {
     e.preventDefault();
 
     console.log(name, email, password);
 
-    // createAccount(account);
+    const res = await signUpUser({
+      personalData: { name, birthday, email, password },
+    });
+
+    console.log(res);
   };
 
   return (
     <form onSubmit={submitForm} className="w-3/5">
-      <Personal />
+      <PersonalSection />
+
       {/* Academic Information */}
       {/* Professional Details */}
       {/* Privacy Consent */}
       {/* Terms and Condition */}
-      {/* Submit */}
 
       <button
         type="submit"
