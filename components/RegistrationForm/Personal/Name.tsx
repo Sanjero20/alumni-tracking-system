@@ -5,7 +5,7 @@ function Name() {
   const { name, handleName } = usePersonalDataStore();
 
   return (
-    <fieldset>
+    <>
       <label>
         First Name
         <input
@@ -38,7 +38,7 @@ function Name() {
           required
         />
       </label>
-    </fieldset>
+    </>
   );
 }
 
