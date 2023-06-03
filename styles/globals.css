@@ -10,3 +10,7 @@ label {
 input {
   @apply rounded border border-slate-300 p-1 focus:outline-blue-400;
 }
+
+select {
+  @apply rounded border border-slate-300 bg-slate-200 px-4 py-1;
+}
