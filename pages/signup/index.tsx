@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Header from '@/components/Header';
+import Header from '@/components/Header/Header';
 import RegistrationForm from '@/components/RegistrationForm/';
 
 import { useEffect } from 'react';
@@ -24,7 +24,7 @@ function SignupPage() {
       </Head>
 
       <div className="min-h-screen">
-        <Header title="Alumni Registration" />
+        <Header title="Alumni Registration" hiddenMenu />
 
         <main className="container m-auto">
           <RegistrationForm />
