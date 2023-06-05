@@ -1,23 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { FormEvent, useContext, useEffect, useState } from 'react';
-import { AuthContext } from '@/services/auth/authContext';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 import { loginUser } from '@/services/auth/authService';
+import { useAuthStore } from '@/stores/user';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading } = useAuthStore();
   const router = useRouter();
 
   // Redirect to homepage when already authenticated
   useEffect(() => {
-    if (user) router.push('/');
+    if (user) router.replace('/');
   }, [user, router]);
 
   // Remove existing error messages when typing in input fields
@@ -33,8 +33,7 @@ function LoginPage() {
     setError(error);
   };
 
-  // Prevent from displaying the login page
-  // when checking if user is authenticated
+  // Display nothing when user is not authenticated
   if (user || loading) return null;
 
   return (

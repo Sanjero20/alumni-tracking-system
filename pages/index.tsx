@@ -1,12 +1,12 @@
-import AuthLayout from '@/services/auth/authLayout';
 import { auth } from '@/firebase/config';
+import AuthLayout from '@/services/auth/authLayout';
 import Header from '@/components/Header';
-import { useContext } from 'react';
-import { AuthContext } from '@/services/auth/authContext';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuthStore } from '@/stores/user';
 
 export default function Home() {
-  const value = useContext(AuthContext);
+  const { user, loading, error } = useAuthStore();
+
+  console.log(user, loading, error);
 
   return (
     <AuthLayout>

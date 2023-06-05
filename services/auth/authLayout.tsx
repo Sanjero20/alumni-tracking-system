@@ -1,13 +1,14 @@
-import { ReactNode, useContext, useEffect } from 'react';
+import { ReactNode, useEffect, Suspense } from 'react';
 import { useRouter } from 'next/router';
-import { AuthContext } from './authContext';
+import { useAuthStore } from '@/stores/user';
 
 type Props = {
   children: ReactNode;
 };
 
 function AuthLayout({ children }: Props) {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading } = useAuthStore();
+
   const router = useRouter();
 
   useEffect(() => {

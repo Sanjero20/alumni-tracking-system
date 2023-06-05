@@ -3,16 +3,16 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import RegistrationForm from '@/components/RegistrationForm/';
 
-import { useContext, useEffect } from 'react';
-import { AuthContext } from '@/services/auth/authContext';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { useAuthStore } from '@/stores/user';
 
 function SignupPage() {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading } = useAuthStore();
   const router = useRouter();
 
   useEffect(() => {
-    if (user) router.push('/');
+    if (user) router.replace('/');
   }, [user, router]);
 
   if (user || loading) return null;

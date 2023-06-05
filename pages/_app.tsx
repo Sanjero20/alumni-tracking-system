@@ -1,8 +1,8 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { AuthProvider } from '@/services/auth/authContext';
 import { Nunito_Sans } from 'next/font/google';
+import AuthWrapper from '@/services/auth/AuthWrapper';
 
 const globalFont = Nunito_Sans({ subsets: ['latin'] });
 
@@ -14,11 +14,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       </Head>
 
-      <AuthProvider>
-        <div className={globalFont.className}>
+      <div className={globalFont.className}>
+        <AuthWrapper>
           <Component {...pageProps} />
-        </div>
-      </AuthProvider>
+        </AuthWrapper>
+      </div>
     </>
   );
 }
