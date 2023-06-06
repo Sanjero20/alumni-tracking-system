@@ -1,10 +1,10 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { Nunito_Sans } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import AuthWrapper from '@/services/auth/AuthWrapper';
 
-const globalFont = Nunito_Sans({ subsets: ['latin'] });
+const globalFont = Inter({ subsets: ['latin'] });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
