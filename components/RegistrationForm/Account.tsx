@@ -6,29 +6,27 @@ function AccountInfo() {
   const { password, handlePassword } = useAccountStore();
 
   return (
-    <fieldset>
-      <h1 className="text-2xl font-bold">Account Information</h1>
+    <div>
+      <h1 className="title">Account Information</h1>
 
-      <label>
-        Email
+      <fieldset>
+        <label>Email</label>
         <input
           type="email"
           value={email}
           onChange={(e) => handleEmail(e)}
           required
         />
-      </label>
 
-      <label>
-        Password
+        <label>Password</label>
         <input
           type="password"
           value={password}
           onChange={(e) => handlePassword(e)}
           required
         />
-      </label>
-    </fieldset>
+      </fieldset>
+    </div>
   );
 }
 

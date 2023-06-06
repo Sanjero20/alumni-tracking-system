@@ -30,17 +30,13 @@ function RegistrationForm() {
   };
 
   return (
-    <form onSubmit={submitForm} className="w-3/5">
+    <form onSubmit={submitForm} className="flex w-3/5 flex-col gap-2">
       <PersonalInfo />
       <AccountInfo />
-      {/* Academic Information */}
-      {/* Professional Details */}
-      {/* Privacy Consent */}
-      {/* Terms and Condition */}
 
       <button
         type="submit"
-        className="rounded-3xl bg-primary px-8 py-2 text-white "
+        className="w-36 rounded-3xl bg-primary px-8 py-2 text-white"
       >
         Register
       </button>

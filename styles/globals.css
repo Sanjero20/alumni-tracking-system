@@ -3,14 +3,19 @@
 @tailwind utilities;
 
 /* Custom styles */
-label {
-  @apply flex flex-col;
-}
 
 input {
-  @apply rounded border border-slate-300 p-1 focus:outline-blue-400;
+  @apply w-full rounded border border-slate-300 p-1 focus:outline-blue-400;
 }
 
 select {
   @apply rounded border border-slate-300 bg-slate-200 px-2 py-1;
+}
+
+fieldset {
+  @apply flex flex-col gap-1;
+}
+
+.title {
+  @apply text-2xl;
 }

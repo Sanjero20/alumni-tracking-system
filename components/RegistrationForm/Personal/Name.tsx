@@ -5,9 +5,9 @@ function Name() {
   const { name, handleName } = usePersonalDataStore();
 
   return (
-    <>
-      <label>
-        First Name
+    <fieldset>
+      <div>
+        <label>First Name</label>
         <input
           type="text"
           name="first"
@@ -15,10 +15,10 @@ function Name() {
           onChange={(e) => handleName(e)}
           required
         />
-      </label>
+      </div>
 
-      <label>
-        Middle Name
+      <div>
+        <label>Middle Name</label>
         <input
           type="text"
           name="middle"
@@ -26,10 +26,10 @@ function Name() {
           onChange={(e) => handleName(e)}
           required
         />
-      </label>
+      </div>
 
-      <label>
-        Last Name
+      <div>
+        <label>Last Name</label>
         <input
           type="text"
           name="last"
@@ -37,8 +37,8 @@ function Name() {
           onChange={(e) => handleName(e)}
           required
         />
-      </label>
-    </>
+      </div>
+    </fieldset>
   );
 }
 

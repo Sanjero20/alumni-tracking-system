@@ -3,11 +3,13 @@ import Birthday from './Birthday';
 
 function PersonalInfo() {
   return (
-    <fieldset>
-      <h1 className="text-2xl font-bold">Personal Information</h1>
-      <Name />
-      <Birthday />
-    </fieldset>
+    <div>
+      <h1 className="title">Personal Information</h1>
+      <fieldset>
+        <Name />
+        <Birthday />
+      </fieldset>
+    </div>
   );
 }
 

@@ -18,10 +18,9 @@ function Birthday() {
   }, [birthday]);
 
   return (
-    <>
+    <div>
       <label>Date of Birth</label>
-
-      <div className="flex gap-4">
+      <div className="flex gap-3">
         {/* Month */}
         <select
           name="month"
@@ -64,7 +63,7 @@ function Birthday() {
           ))}
         </select>
       </div>
-    </>
+    </div>
   );
 }
 
