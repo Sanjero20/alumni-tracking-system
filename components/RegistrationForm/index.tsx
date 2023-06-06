@@ -1,14 +1,15 @@
 import React, { FormEvent } from 'react';
 
-// Form Categories
-import PersonalInfo from './Personal';
-
 // Stores
 import { usePersonalDataStore } from '@/stores/registration/personal';
 import { useAccountStore } from '@/stores/registration/account';
 
 // Utils
 import { signUpUser } from '@/services/auth/authService';
+
+// Form Categories
+import PersonalInfo from './Personal';
+import AcademicInfo from './Academic';
 import AccountInfo from './Account';
 
 function RegistrationForm() {
@@ -32,6 +33,7 @@ function RegistrationForm() {
   return (
     <form onSubmit={submitForm} className="flex w-3/5 flex-col gap-2">
       <PersonalInfo />
+      <AcademicInfo />
       <AccountInfo />
 
       <button
