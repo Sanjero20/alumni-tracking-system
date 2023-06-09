@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { usePersonalDataStore } from '@/stores/registration/personal';
-
+import { useBirthdayStore } from '@/stores/registration/personal/birthday';
 import { getMonths, getDaysOfMonth, getPast100Years } from '@/utils/date';
 
 const months = getMonths();
@@ -8,7 +7,7 @@ const initialDays = getDaysOfMonth();
 const years = getPast100Years();
 
 function Birthday() {
-  const { birthday, handleBirthday } = usePersonalDataStore();
+  const { birthday, handleBirthday } = useBirthdayStore();
   const [days, setDays] = useState<number[]>(initialDays);
 
   useEffect(() => {

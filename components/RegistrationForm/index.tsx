@@ -1,7 +1,8 @@
 import React, { FormEvent } from 'react';
 
 // Stores
-import { usePersonalDataStore } from '@/stores/registration/personal';
+import { useNameStore } from '@/stores/registration/personal/name';
+import { useBirthdayStore } from '@/stores/registration/personal/birthday';
 import { useAccountStore } from '@/stores/registration/account';
 
 // Utils
@@ -14,13 +15,14 @@ import AccountInfo from './Account';
 
 function RegistrationForm() {
   // Personal Info
+  const { name } = useNameStore();
+  const { birthday } = useBirthdayStore();
+
+  // Account Info
   const { email, password } = useAccountStore();
-  const { name, birthday } = usePersonalDataStore();
 
   const submitForm = async (e: FormEvent) => {
     e.preventDefault();
-
-    console.log(name, email, password);
 
     const res = await signUpUser({
       personalData: { name, birthday },

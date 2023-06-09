@@ -1,8 +1,8 @@
 import React from 'react';
-import { usePersonalDataStore } from '@/stores/registration/personal';
+import { useNameStore } from '@/stores/registration/personal/name';
 
 function Name() {
-  const { name, handleName } = usePersonalDataStore();
+  const { name, handleName } = useNameStore();
 
   return (
     <fieldset>
