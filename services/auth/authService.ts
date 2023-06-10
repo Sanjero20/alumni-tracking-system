@@ -6,7 +6,7 @@ import {
 } from 'firebase/auth';
 
 import { loginErrorHandler } from './authErrorHandler';
-import { AccountRegister } from '@/utils/types';
+import { AccountRegister } from '@/types/registration';
 
 export const logoutUser = () => {
   auth.signOut();
@@ -38,7 +38,9 @@ export const signUpUser = async (registrationData: AccountRegister) => {
     const { uid } = userCredential.user;
 
     const docRef = doc(usersCollection, uid);
+
     await setDoc(docRef, {
+      role: 'user',
       id: uid,
       email,
       name,

@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import { create } from 'zustand';
-import { Birthday } from '@/utils/types';
+import { Birthday } from '@/types/account';
 
 const initialBirthday: Birthday = {
   month: '',

@@ -1,12 +1,12 @@
 import { ChangeEvent } from 'react';
 import { create } from 'zustand';
 
-interface AccountState {
+type AccountState = {
   email: string;
   password: string;
   handleEmail: (e: ChangeEvent<HTMLInputElement>) => void;
   handlePassword: (e: ChangeEvent<HTMLInputElement>) => void;
-}
+};
 ``;
 
 export const useAccountStore = create<AccountState>()((set) => ({

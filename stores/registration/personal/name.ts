@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import { create } from 'zustand';
-import { Name } from '@/utils/types';
+import { Name } from '@/types/account';
 
 const initialName: Name = {
   first: '',
