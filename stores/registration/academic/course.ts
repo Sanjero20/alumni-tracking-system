@@ -14,6 +14,8 @@ type CourseState = {
 
 type CourseAction = {
   handleCourse: (e: ChangeEvent<HTMLSelectElement>) => void;
+  resetCollege: () => void;
+  resetProgram: () => void;
   resetCourse: () => void;
 };
 
@@ -32,6 +34,27 @@ export const useCourseStore = create<CourseState & CourseAction>()((set) => ({
       };
     }),
 
+  resetCollege: () =>
+    set((state: CourseState) => {
+      return {
+        course: {
+          ...state.course,
+          college: '',
+        },
+      };
+    }),
+
+  resetProgram: () =>
+    set((state: CourseState) => {
+      return {
+        course: {
+          ...state.course,
+          program: '',
+        },
+      };
+    }),
+
+  // Reset All
   resetCourse: () =>
     set({
       course: initialCourse,
