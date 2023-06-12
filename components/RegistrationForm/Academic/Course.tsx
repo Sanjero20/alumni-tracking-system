@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchCampuses } from '@/services/request';
 
-function School() {
+function Course() {
   const [campuses, setCampuses] = useState<any>([]);
 
   useEffect(() => {
@@ -44,4 +44,4 @@ function School() {
   );
 }
 
-export default School;
+export default Course;
