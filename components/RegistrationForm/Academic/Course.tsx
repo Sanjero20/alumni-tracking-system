@@ -1,42 +1,49 @@
 import { useEffect, useState } from 'react';
 import { fetchCampuses } from '@/services/request';
+import { Campus } from '@/types/campus';
+import { useCourseStore } from '@/stores/registration/academic/course';
 
 function Course() {
-  const [campuses, setCampuses] = useState<any>([]);
+  const { course, handleCourse } = useCourseStore();
+
+  const [campusesInfo, setCampusesInfo] = useState<Campus[]>([]);
+
+  const [campuses, setCampuses] = useState([]);
 
   useEffect(() => {
-    const getCampuses = async () => {
+    const getData = async () => {
       const data = await fetchCampuses();
-      setCampuses(data);
+      if (!data) return;
+      setCampusesInfo(data);
     };
 
-    getCampuses();
+    getData();
   }, []);
+
+  // Display all campuses
+  useEffect(() => {
+    if (campusesInfo.length == 0) return;
+  }, [campusesInfo]);
 
   return (
     <fieldset>
       <div className="flex flex-col">
-        <label htmlFor="">Campus</label>
-        <select name="" required>
+        <label htmlFor="campus">Campus</label>
+        <select name="campus" id="campus" required>
           <option value="">Select Campus</option>
-          {campuses.map((campus: any) => (
-            <option key={campus.campusId} value={campus.name}>
-              {campus.name}
-            </option>
-          ))}
         </select>
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="">College</label>
-        <select name="">
+        <label htmlFor="college">College</label>
+        <select name="college" id="college">
           <option value="">Select College</option>
         </select>
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="">Degree/Certification & Major</label>
-        <select name="">
+        <label htmlFor="program">Degree/Certification & Major</label>
+        <select name="program" id="program">
           <option value="">Select Program </option>
         </select>
       </div>
