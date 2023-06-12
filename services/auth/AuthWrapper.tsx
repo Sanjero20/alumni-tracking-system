@@ -1,5 +1,5 @@
-import React, { useEffect, Suspense } from 'react';
-import { auth } from '@/firebase/config';
+import React, { useEffect } from 'react';
+import { auth } from '@/firebase.config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useAuthStore } from '@/stores/user';
 

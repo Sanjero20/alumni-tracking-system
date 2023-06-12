@@ -1,4 +1,4 @@
-import { db } from '@/firebase/config';
+import { db } from '@/firebase.config';
 import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
 
 // fetch documents in the database collections
