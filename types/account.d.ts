@@ -23,6 +23,11 @@ export type AcadYear = {
   yearGraduated: number | string;
 };
 
+export type AcadAccount = {
+  srCode: string;
+  bsuEmail: string;
+};
+
 // Email and Password
 export type Credentials = {
   email: string;
@@ -32,7 +37,6 @@ export type Credentials = {
 // Data format that will be stored in the database
 export type AccountType = {
   id: string;
-  permission: 'user' | 'admin';
 
   profile: {
     name: Name;
@@ -42,9 +46,11 @@ export type AccountType = {
   academicData: {
     course: Course;
     year: AcadYear;
+    account: AcadAccount;
   };
 
-  accountData: {
+  account: {
+    permission: string;
     email: string;
     isVerified: boolean;
   };

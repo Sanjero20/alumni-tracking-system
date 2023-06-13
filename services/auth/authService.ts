@@ -40,12 +40,12 @@ export const signUpUser = async (registrationData: AccountRegister) => {
 
     const userData: AccountType = {
       id: uid,
-      permission: 'user',
       profile: personalData,
       academicData: academicData,
-      accountData: {
+      account: {
         email,
         isVerified: false,
+        permission: 'user',
       },
     };
 

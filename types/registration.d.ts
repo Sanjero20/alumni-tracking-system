@@ -1,4 +1,12 @@
-import { Name, Birthday, AcadInfo, Credentials, Course, Year } from './account';
+import {
+  Name,
+  Birthday,
+  AcadInfo,
+  Credentials,
+  Course,
+  AcadYear,
+  AcadAccount,
+} from './account';
 
 type PersonalType = {
   name: Name;
@@ -7,7 +15,8 @@ type PersonalType = {
 
 type AcademicType = {
   course: Course;
-  year: Year;
+  year: AcadYear;
+  account: AcadAccount;
 };
 
 export type AccountRegister = {

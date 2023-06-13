@@ -14,6 +14,8 @@ import { useBirthdayStore } from '@/stores/registration/personal/birthday';
 import { useCourseStore } from '@/stores/registration/academic/course';
 import { useAcademicYearStore } from '@/stores/registration/academic/year';
 import { useAccountStore } from '@/stores/registration/account';
+import { AccountRegister } from '@/types/registration';
+import { useAcademicAccountStore } from '@/stores/registration/academic/account';
 
 function RegistrationForm() {
   // Personal Info
@@ -23,6 +25,7 @@ function RegistrationForm() {
   // Academic Info
   const { course } = useCourseStore();
   const { acadYear } = useAcademicYearStore();
+  const { account } = useAcademicAccountStore();
 
   // Account Info
   const { email, password } = useAccountStore();
@@ -30,13 +33,16 @@ function RegistrationForm() {
   const submitForm = async (e: FormEvent) => {
     e.preventDefault();
 
-    const res = await signUpUser({
+    const registrationData: AccountRegister = {
       personalData: { name, birthday },
-      academicData: { course, year: acadYear },
       accountData: { email, password },
-    });
+      academicData: { course, year: acadYear, account },
+    };
 
-    console.log(res);
+    console.log(registrationData);
+
+    const error = await signUpUser(registrationData);
+    console.log(error);
   };
 
   return (
