@@ -5,13 +5,25 @@ function AcademicYear() {
   return (
     <fieldset className="flex-row">
       <div className="w-1/2">
-        <label htmlFor="">Year Started</label>
-        <input type="number" min={startingYear} max={currentYear} required />
+        <label htmlFor="year-start">Year Started</label>
+        <input
+          type="number"
+          id="year-start"
+          min={startingYear}
+          max={currentYear}
+          required
+        />
       </div>
 
       <div className="w-1/2">
-        <label htmlFor="">Year Graduated</label>
-        <input type="number" min={startingYear} max={currentYear} required />
+        <label htmlFor="year-end">Year Graduated</label>
+        <input
+          type="number"
+          id="year-end"
+          min={startingYear}
+          max={currentYear}
+          required
+        />
       </div>
     </fieldset>
   );

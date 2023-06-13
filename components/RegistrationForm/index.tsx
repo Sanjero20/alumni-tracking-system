@@ -33,7 +33,7 @@ function RegistrationForm() {
   };
 
   return (
-    <form onSubmit={submitForm} className="flex w-3/5 flex-col gap-2">
+    <form onSubmit={submitForm} className="flex w-full flex-col gap-2 md:w-3/5">
       <PersonalInfo />
       <AcademicInfo />
       <AccountInfo />

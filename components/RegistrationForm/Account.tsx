@@ -10,17 +10,19 @@ function AccountInfo() {
       <h1 className="title">Account Information</h1>
 
       <fieldset>
-        <label>Email</label>
+        <label htmlFor="email">Email</label>
         <input
           type="email"
+          id="email"
           value={email}
           onChange={(e) => handleEmail(e)}
           required
         />
 
-        <label>Password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
+          id="password"
           value={password}
           onChange={(e) => handlePassword(e)}
           required

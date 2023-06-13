@@ -7,10 +7,11 @@ function Name() {
   return (
     <fieldset>
       <div>
-        <label>First Name</label>
+        <label htmlFor="first-name">First Name</label>
         <input
           type="text"
           name="first"
+          id="first-name"
           value={name.first}
           onChange={(e) => handleName(e)}
           required
@@ -18,10 +19,11 @@ function Name() {
       </div>
 
       <div>
-        <label>Middle Name</label>
+        <label htmlFor="middle-name">Middle Name</label>
         <input
           type="text"
           name="middle"
+          id="middle-name"
           value={name.middle}
           onChange={(e) => handleName(e)}
           required
@@ -29,10 +31,11 @@ function Name() {
       </div>
 
       <div>
-        <label>Last Name</label>
+        <label htmlFor="last-name">Last Name</label>
         <input
           type="text"
           name="last"
+          id="last-name"
           value={name.last}
           onChange={(e) => handleName(e)}
           required
