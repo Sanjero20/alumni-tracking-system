@@ -134,7 +134,13 @@ function Course() {
 
       <div className="flex flex-col">
         <label htmlFor="program">Degree/Certification & Major</label>
-        <select name="program" id="program">
+        <select
+          name="program"
+          id="program"
+          value={course.program}
+          onChange={(e) => handleCourse(e)}
+          required
+        >
           <option value="">Select Program </option>
           {programs.length > 0 &&
             programs.map((program) => (

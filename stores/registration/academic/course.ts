@@ -1,15 +1,15 @@
-import { AcadInfo } from '@/types/account';
 import { ChangeEvent } from 'react';
 import { create } from 'zustand';
+import { Course } from '@/types/account';
 
-const initialCourse: AcadInfo = {
+const initialCourse: Course = {
   campus: '',
   college: '',
   program: '',
 };
 
 type CourseState = {
-  course: AcadInfo;
+  course: Course;
 };
 
 type CourseAction = {
