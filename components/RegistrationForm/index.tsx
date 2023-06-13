@@ -1,10 +1,5 @@
 import React, { FormEvent } from 'react';
 
-// Stores
-import { useNameStore } from '@/stores/registration/personal/name';
-import { useBirthdayStore } from '@/stores/registration/personal/birthday';
-import { useAccountStore } from '@/stores/registration/account';
-
 // Utils
 import { signUpUser } from '@/services/auth/authService';
 
@@ -13,10 +8,21 @@ import PersonalInfo from './Personal';
 import AcademicInfo from './Academic';
 import AccountInfo from './Account';
 
+// Stores
+import { useNameStore } from '@/stores/registration/personal/name';
+import { useBirthdayStore } from '@/stores/registration/personal/birthday';
+import { useCourseStore } from '@/stores/registration/academic/course';
+import { useAcademicYearStore } from '@/stores/registration/academic/year';
+import { useAccountStore } from '@/stores/registration/account';
+
 function RegistrationForm() {
   // Personal Info
   const { name } = useNameStore();
   const { birthday } = useBirthdayStore();
+
+  // Academic Info
+  const { course } = useCourseStore();
+  const { acadYear } = useAcademicYearStore();
 
   // Account Info
   const { email, password } = useAccountStore();
@@ -26,6 +32,7 @@ function RegistrationForm() {
 
     const res = await signUpUser({
       personalData: { name, birthday },
+      academicData: { course, year: acadYear },
       accountData: { email, password },
     });
 

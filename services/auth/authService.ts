@@ -7,6 +7,7 @@ import {
 
 import { loginErrorHandler } from './authErrorHandler';
 import { AccountRegister } from '@/types/registration';
+import { AccountType } from '@/types/account';
 
 export const logoutUser = () => {
   auth.signOut();
@@ -15,18 +16,18 @@ export const logoutUser = () => {
 export const loginUser = async (email: string, password: string) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    return ''; // No errors
+    return null;
   } catch (error: any) {
     return loginErrorHandler(error.code);
   }
 };
 
 export const signUpUser = async (registrationData: AccountRegister) => {
-  // Destruct Registration form data
-  const { name, birthday } = registrationData.personalData;
+  const { personalData, academicData } = registrationData;
   const { email, password } = registrationData.accountData;
 
-  const usersCollection = collection(db, 'users');
+  // Create a accounts collection reference
+  const accountsCollection = collection(db, 'accounts');
 
   try {
     const userCredential = await createUserWithEmailAndPassword(
@@ -37,19 +38,24 @@ export const signUpUser = async (registrationData: AccountRegister) => {
 
     const { uid } = userCredential.user;
 
-    const docRef = doc(usersCollection, uid);
-
-    await setDoc(docRef, {
-      role: 'user',
+    const userData: AccountType = {
       id: uid,
-      email,
-      name,
-      birthday,
-    });
+      permission: 'user',
+      profile: personalData,
+      academicData: academicData,
+      accountData: {
+        email,
+        isVerified: false,
+      },
+    };
 
-    logoutUser();
-    // Reset all forms state
-    return '';
+    // create a document reference in the accounts collection
+    const docRef = doc(accountsCollection, uid);
+
+    // Store user data in the accounts collection
+    await setDoc(docRef, userData);
+
+    return null;
   } catch (error: any) {
     return error.code;
   }
