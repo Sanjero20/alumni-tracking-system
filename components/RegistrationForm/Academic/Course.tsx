@@ -75,6 +75,7 @@ function Course() {
     setPrograms([]);
 
     if (course.college === '') return;
+    if (campusesInfo.length === 0) return;
 
     // Only get the campus info that matches the selected campus
     const filteredCampus = campusesInfo.filter(

@@ -7,13 +7,44 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuthStore } from '@/stores/user';
 
+// stores for registration handlers
+import { useNameStore } from '@/stores/registration/personal/name';
+import { useBirthdayStore } from '@/stores/registration/personal/birthday';
+import { useAcademicAccountStore } from '@/stores/registration/academic/account';
+import { useAcademicYearStore } from '@/stores/registration/academic/year';
+import { useCourseStore } from '@/stores/registration/academic/course';
+import { useAccountStore } from '@/stores/registration/account';
+
 function SignupPage() {
   const { user, loading } = useAuthStore();
   const router = useRouter();
 
+  // All registration data reset functions
+  const { resetName } = useNameStore();
+  const { resetBirthday } = useBirthdayStore();
+  const { resetCourse } = useCourseStore();
+  const { resetAcadYear } = useAcademicYearStore();
+  const { resetAcademicAccount } = useAcademicAccountStore();
+  const { resetAccount } = useAccountStore();
+
   useEffect(() => {
     if (user) router.replace('/');
   }, [user, router]);
+
+  // Clear all fields at entering page route
+  useEffect(() => {
+    resetForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const resetForm = () => {
+    resetName();
+    resetBirthday();
+    resetCourse();
+    resetAcadYear();
+    resetAcademicAccount();
+    resetAccount();
+  };
 
   if (user || loading) return null;
 
