@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useState } from 'react';
 
 // Utils
 import { signUpUser } from '@/services/auth/authService';
@@ -18,6 +18,8 @@ import { AccountRegister } from '@/types/registration';
 import { useAcademicAccountStore } from '@/stores/registration/academic/account';
 
 function RegistrationForm() {
+  const [error, setError] = useState<string | null>('');
+
   // Personal Info
   const { name } = useNameStore();
   const { birthday } = useBirthdayStore();
@@ -39,10 +41,8 @@ function RegistrationForm() {
       academicData: { course, year: acadYear, account },
     };
 
-    console.log(registrationData);
-
     const error = await signUpUser(registrationData);
-    console.log(error);
+    setError(error);
   };
 
   return (
@@ -50,6 +50,8 @@ function RegistrationForm() {
       <PersonalInfo />
       <AcademicInfo />
       <AccountInfo />
+
+      {error && <p className="font-bold text-red-500">{error}</p>}
 
       <button
         type="submit"

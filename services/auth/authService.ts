@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 
-import { loginErrorHandler } from './authErrorHandler';
+import { loginErrorHandler, signUpErrorHandler } from './authErrorHandler';
 import { AccountRegister } from '@/types/registration';
 import { AccountType } from '@/types/account';
 
@@ -36,8 +36,8 @@ export const signUpUser = async (registrationData: AccountRegister) => {
       password
     );
 
+    // Restructure user data to match the format in the collection
     const { uid } = userCredential.user;
-
     const userData: AccountType = {
       id: uid,
       profile: personalData,
@@ -51,12 +51,10 @@ export const signUpUser = async (registrationData: AccountRegister) => {
 
     // create a document reference in the accounts collection
     const docRef = doc(accountsCollection, uid);
-
     // Store user data in the accounts collection
     await setDoc(docRef, userData);
-
     return null;
   } catch (error: any) {
-    return error.code;
+    return signUpErrorHandler(error.code);
   }
 };

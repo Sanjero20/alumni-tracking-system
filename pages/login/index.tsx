@@ -10,7 +10,7 @@ import { useAuthStore } from '@/stores/user';
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
   const { user, loading } = useAuthStore();
   const router = useRouter();
@@ -66,6 +66,7 @@ function LoginPage() {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
 
             {/* Password */}
@@ -74,6 +75,7 @@ function LoginPage() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
 
             {error && <p className="font-bold text-red-500">{error}</p>}
