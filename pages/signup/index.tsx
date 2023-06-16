@@ -57,11 +57,11 @@ function SignupPage() {
       <div className="min-h-screen">
         <Header title="Alumni Registration" hiddenMenu />
 
-        <main className="container m-auto">
+        <main className="container m-auto mx-auto flex w-full flex-col items-center justify-center p-2 md:w-3/5 ">
           <RegistrationForm />
 
           {/* Link to login page */}
-          <p className="flex gap-1">
+          <p className="flex gap-1 self-start">
             Already registered?
             <Link href="/login" className="text-primary underline">
               Sign in here!

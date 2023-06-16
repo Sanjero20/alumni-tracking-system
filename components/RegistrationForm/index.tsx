@@ -3,7 +3,8 @@ import React, { FormEvent, useState } from 'react';
 // Utils
 import { signUpUser } from '@/services/auth/authService';
 
-// Form Categories
+// Components
+import Button from '../Button';
 import PersonalInfo from './Personal';
 import AcademicInfo from './Academic';
 import AccountInfo from './Account';
@@ -46,19 +47,16 @@ function RegistrationForm() {
   };
 
   return (
-    <form onSubmit={submitForm} className="flex w-full flex-col gap-2 md:w-3/5">
+    <form onSubmit={submitForm} className="flex flex-col gap-2 ">
       <PersonalInfo />
       <AcademicInfo />
       <AccountInfo />
 
       {error && <p className="font-bold text-red-500">{error}</p>}
 
-      <button
-        type="submit"
-        className="w-36 rounded-3xl bg-primary px-8 py-2 text-white"
-      >
+      <Button type="submit" className="w-fit">
         Register
-      </button>
+      </Button>
     </form>
   );
 }

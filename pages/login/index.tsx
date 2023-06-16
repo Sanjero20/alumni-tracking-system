@@ -6,10 +6,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { loginUser } from '@/services/auth/authService';
 import { useAuthStore } from '@/stores/user';
+import Button from '@/components/Button';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isDisabled, setIsDisabled] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const { user, loading } = useAuthStore();
@@ -80,12 +82,9 @@ function LoginPage() {
 
             {error && <p className="font-bold text-red-500">{error}</p>}
 
-            <button
-              type="submit"
-              className="mx-auto rounded-3xl bg-primary px-10 py-2 font-bold text-white "
-            >
+            <Button type="submit" className="mx-auto">
               Sign In
-            </button>
+            </Button>
           </form>
 
           <hr />
