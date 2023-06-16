@@ -46,7 +46,7 @@ function LoginPage() {
         <Image
           src="/bsu-logo.svg"
           alt="alumni-logo"
-          className="mx-auto w-1/3 md:w-1/2"
+          className="mx-auto w-1/2 md:w-1/3"
           priority={true}
           width={0}
           height={0}
