@@ -22,3 +22,7 @@ fieldset {
 .title {
   @apply text-2xl;
 }
+
+button:disabled {
+  @apply bg-neutral-500 text-white;
+}

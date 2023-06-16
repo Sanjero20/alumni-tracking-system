@@ -31,7 +31,9 @@ function LoginPage() {
   const loginAccount = async (e: FormEvent) => {
     e.preventDefault();
 
+    setIsDisabled(true);
     const error = await loginUser(email, password);
+    setIsDisabled(false);
     setError(error);
   };
 
@@ -39,23 +41,27 @@ function LoginPage() {
   if (user || loading) return null;
 
   return (
-    <div className="flex h-screen">
-      <section className="flex h-full w-1/2 flex-col items-center justify-center gap-2 bg-primary">
+    <div className="flex h-screen flex-col items-center justify-center gap-5 md:flex-row md:gap-0">
+      <section className="flex-col items-center justify-center gap-1 bg-white sm:flex md:h-full md:w-1/2 md:bg-primary">
         <Image
           src="/bsu-logo.svg"
           alt="alumni-logo"
-          className="w-1/2"
+          className="mx-auto w-1/3 md:w-1/2"
           priority={true}
-          width={500}
-          height={500}
+          width={0}
+          height={0}
         />
 
-        <h1 className="text-5xl font-bold text-white">Alumni Portal</h1>
+        <h1 className=" text-center text-3xl font-bold text-red-600 md:text-5xl md:text-white">
+          Alumni Portal
+        </h1>
       </section>
 
-      <section className="flex h-full w-1/2 flex-col items-center justify-center p-4">
+      <section className="flex w-full flex-col items-center justify-center p-4 md:w-1/2">
         <div className="flex w-4/5 flex-col justify-center gap-2">
-          <h1 className="text-3xl font-bold text-red-600">Please Login</h1>
+          <h1 className="text-2xl font-bold text-red-600 md:text-3xl">
+            Please Login
+          </h1>
 
           {/* Login section */}
           <form
@@ -82,7 +88,7 @@ function LoginPage() {
 
             {error && <p className="font-bold text-red-500">{error}</p>}
 
-            <Button type="submit" className="mx-auto">
+            <Button type="submit" className="mx-auto" disabled={isDisabled}>
               Sign In
             </Button>
           </form>
