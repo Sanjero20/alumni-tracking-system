@@ -4,8 +4,8 @@ function SchoolAccount() {
   const { account, handleAcademicAccount } = useAcademicAccountStore();
 
   return (
-    <fieldset className="flex-row">
-      <div className="w-1/2">
+    <fieldset className="sm:flex-row">
+      <div className="md:w-1/2">
         <label htmlFor="sr-code">SR-CODE [YY-DDDDD]</label>
         <input
           type="text"
@@ -17,7 +17,7 @@ function SchoolAccount() {
         />
       </div>
 
-      <div className="w-1/2">
+      <div className="md:w-1/2">
         <label htmlFor="bsu-email">BSU Mail[@g.batstate-u.edu.ph]</label>
         <input
           type="email"

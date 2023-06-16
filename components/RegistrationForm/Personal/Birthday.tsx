@@ -19,7 +19,7 @@ function Birthday() {
   return (
     <div>
       <p>Date of Birth</p>
-      <div className="flex gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row">
         {/* Month */}
         <select
           name="month"
