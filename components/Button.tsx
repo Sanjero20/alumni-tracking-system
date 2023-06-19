@@ -5,7 +5,7 @@ type ButtonProps = {
   type: 'button' | 'submit' | 'reset' | undefined;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
-  disabled: boolean;
+  disabled?: boolean;
 };
 
 function Button({
