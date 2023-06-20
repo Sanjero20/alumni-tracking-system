@@ -11,8 +11,8 @@ function SideNavLink({ href, children }: LinkProps) {
   const { asPath } = useRouter();
   const isActive = asPath === href;
 
-  const generalStyle = 'p-1';
-  const activeStyle = 'bg-white text-primary rounded';
+  const generalStyle = 'p-2 w-full flex gap-2 items-center';
+  const activeStyle = 'bg-primary text-white rounded';
   const inactiveStyle = '';
 
   const linkStyle = isActive ? activeStyle : inactiveStyle;
