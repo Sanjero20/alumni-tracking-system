@@ -10,7 +10,8 @@ function Layout({ children }: LayoutProps) {
   return (
     <AuthLayout>
       <Header />
-      {children}
+
+      <div className="h-full">{children}</div>
     </AuthLayout>
   );
 }

@@ -8,9 +8,9 @@ type LayoutProps = {
 
 function AdminLayout({ children }: LayoutProps) {
   return (
-    <div className="flex h-screen flex-col">
+    <div className="flex h-screen flex-col bg-body">
       <Header hiddenMenu />
-      <main className="flex h-screen w-full bg-body">
+      <main className="flex h-screen w-full">
         <Sidebar />
         {children}
       </main>

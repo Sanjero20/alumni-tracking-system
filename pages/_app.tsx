@@ -1,10 +1,7 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { Inter } from 'next/font/google';
 import AuthWrapper from '@/services/auth/AuthWrapper';
-
-const globalFont = Inter({ subsets: ['latin'] });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -14,11 +11,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       </Head>
 
-      <div className={globalFont.className}>
-        <AuthWrapper>
-          <Component {...pageProps} />
-        </AuthWrapper>
-      </div>
+      <AuthWrapper>
+        <Component {...pageProps} />
+      </AuthWrapper>
     </>
   );
 }

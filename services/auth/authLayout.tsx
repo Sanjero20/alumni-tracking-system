@@ -21,7 +21,7 @@ function AuthLayout({ children }: Props) {
   if (!user || loading) return null;
 
   // Return child components when user is authenticated or still loading
-  return <>{children}</>;
+  return <div className="min-h-screen bg-body">{children}</div>;
 }
 
 export default AuthLayout;
