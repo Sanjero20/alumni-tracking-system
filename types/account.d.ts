@@ -34,6 +34,9 @@ export type Credentials = {
   password: string;
 };
 
+export type Permission = 'user' | 'admin';
+export type Status = 'verified' | 'rejected' | 'pending';
+
 // Data format that will be stored in the database
 export type AccountType = {
   id: string;
@@ -50,8 +53,8 @@ export type AccountType = {
   };
 
   account: {
-    permission: string;
     email: string;
-    isVerified: boolean;
+    permission: Permission;
+    status: Status;
   };
 };
