@@ -1,4 +1,11 @@
-export const loginErrorHandler = (errorCode: string) => {
+type ErrorMsg = {
+  code: string;
+  message: string;
+};
+
+export const loginErrorHandler = (error: ErrorMsg) => {
+  const errorCode = error.code ? error.code : error.message;
+
   switch (errorCode) {
     case 'auth/invalid-email':
       return 'Invalid email address.';
@@ -12,6 +19,10 @@ export const loginErrorHandler = (errorCode: string) => {
       return 'Network connection failed.';
     case 'auth/too-many-requests':
       return 'Too many sign-in attempts. Try again later.';
+    case 'auth/account-pending':
+      return 'Account is pending for approval';
+    case 'auth/account-rejected':
+      return 'Account is rejected due to invalid credentials';
     default:
       return 'An unknown error occured. Please try again later.';
   }

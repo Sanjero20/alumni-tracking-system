@@ -11,16 +11,22 @@ import Button from '@/components/Button';
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  // Utility states
   const [isDisabled, setIsDisabled] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // States for checking user credentials
   const { user, loading } = useAuthStore();
+  const { isVerified, updateIsVerified } = useAuthStore();
+  const { permission, updateUserPermission } = useAuthStore();
+
   const router = useRouter();
 
   // Redirect to homepage when already authenticated
   useEffect(() => {
-    if (user) router.replace('/');
-  }, [user, router]);
+    if (user && isVerified) router.replace('/');
+  }, [user, isVerified, router]);
 
   // Remove existing error messages when typing in input fields
   useEffect(() => {
@@ -32,13 +38,18 @@ function LoginPage() {
     e.preventDefault();
 
     setIsDisabled(true);
-    const error = await loginUser(email, password);
+
+    const status = await loginUser(email, password);
+
+    updateIsVerified(status.isUserVerified);
+
+    // After Login logic
     setIsDisabled(false);
-    setError(error);
+    setError(status.errorMsg);
   };
 
   // Display nothing when user is not authenticated
-  if (user || loading) return null;
+  if ((user && isVerified) || loading) return null;
 
   return (
     <div className="flex h-screen flex-col items-center justify-center gap-5 md:flex-row md:gap-0">

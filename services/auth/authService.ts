@@ -1,25 +1,47 @@
 import { auth, db } from '@/firebase.config';
 import { collection, doc, setDoc } from 'firebase/firestore';
+import { loginErrorHandler, signUpErrorHandler } from './authErrorHandler';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 
-import { loginErrorHandler, signUpErrorHandler } from './authErrorHandler';
 import { AccountRegister } from '@/types/registration';
-import { AccountType } from '@/types/account';
+import { AccountType, Permission } from '@/types/account';
+import { getUserAccountDetails } from '../request';
 
 export const logoutUser = () => {
   auth.signOut();
 };
 
 export const loginUser = async (email: string, password: string) => {
+  let userPermission: Permission = 'user';
+  let isUserVerified = false;
+  let errorMsg: string | null = null;
+
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    return null;
+
+    // Check user account details if is verified
+    if (!auth.currentUser) throw new Error('');
+    const userID = auth.currentUser.uid;
+
+    const userData = await getUserAccountDetails(userID);
+
+    if (!userData) throw new Error('');
+    userPermission = userData.permission;
+
+    if (userData.status !== 'verified') {
+      throw new Error(`auth/account-${userData.status}`);
+    }
+
+    isUserVerified = true;
   } catch (error: any) {
-    return loginErrorHandler(error.code);
+    auth.signOut();
+    errorMsg = loginErrorHandler(error);
   }
+
+  return { userPermission, isUserVerified, errorMsg };
 };
 
 export const signUpUser = async (registrationData: AccountRegister) => {
@@ -44,7 +66,7 @@ export const signUpUser = async (registrationData: AccountRegister) => {
       academicData: academicData,
       account: {
         email,
-        isVerified: false,
+        status: 'pending',
         permission: 'user',
       },
     };
