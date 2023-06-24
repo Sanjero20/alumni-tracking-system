@@ -4,7 +4,7 @@ import React, { FormEvent, useState } from 'react';
 import { signUpUser } from '@/services/auth/authService';
 
 // Components
-import Button from '../Button';
+import Button from '../Buttons';
 import PersonalInfo from './Personal';
 import AcademicInfo from './Academic';
 import AccountInfo from './Account';
