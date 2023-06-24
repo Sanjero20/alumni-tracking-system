@@ -34,8 +34,14 @@ export type Credentials = {
   password: string;
 };
 
-export type Permission = 'user' | 'admin';
+export type Permission = 'user' | 'admin' | '';
 export type Status = 'verified' | 'rejected' | 'pending';
+
+export type UserAccount = {
+  email: string;
+  permission: Permission;
+  status: Status;
+};
 
 // Data format that will be stored in the database
 export type AccountType = {
@@ -52,9 +58,5 @@ export type AccountType = {
     account: AcadAccount;
   };
 
-  account: {
-    email: string;
-    permission: Permission;
-    status: Status;
-  };
+  account: UserAccount;
 };

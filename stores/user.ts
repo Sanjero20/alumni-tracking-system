@@ -1,4 +1,4 @@
-import { Permission } from '@/types/account';
+import { AccountType, Permission, UserAccount } from '@/types/account';
 import { create } from 'zustand';
 
 type User = object | null | undefined;
@@ -13,8 +13,7 @@ type AuthState = {
 
 type AuthAction = {
   updateAuth: (user: User, loading: boolean, error: any) => void;
-  updateIsVerified: (bool: boolean) => void;
-  updateUserPermission: (role: Permission) => void;
+  updateAccountStatus: (account: UserAccount) => void;
   resetAuth: () => void;
 };
 
@@ -22,7 +21,7 @@ const initialAuthState: AuthState = {
   user: null,
   loading: true,
   isVerified: false,
-  permission: 'user',
+  permission: '',
   error: null,
 };
 
@@ -30,7 +29,10 @@ export const useAuthStore = create<AuthState & AuthAction>()((set) => ({
   ...initialAuthState,
 
   updateAuth: (user, loading, error) => set(() => ({ user, loading, error })),
-  updateIsVerified: (bool) => set(() => ({ isVerified: bool })),
-  updateUserPermission: (permission) => set(() => ({ permission })),
+  updateAccountStatus: (account) =>
+    set(() => ({
+      isVerified: account.status === 'verified',
+      permission: account.permission,
+    })),
   resetAuth: () => set(() => initialAuthState),
 }));
