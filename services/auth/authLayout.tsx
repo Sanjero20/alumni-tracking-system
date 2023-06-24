@@ -13,7 +13,7 @@ function AuthLayout({ children }: Props) {
 
   useEffect(() => {
     if (!user && !loading) {
-      router.push('/login');
+      router.replace('/login');
     }
   }, [user, loading, router]);
 

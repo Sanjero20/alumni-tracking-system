@@ -1,12 +1,22 @@
-import React from 'react';
-import AuthLayout from '@/services/auth/authLayout';
+import { ReactNode } from 'react';
+import { useRouter } from 'next/router';
 import Header from '@/components/Header/Header';
+import AuthLayout from '@/services/auth/authLayout';
+import { useAuthStore } from '@/stores/user';
 
 type LayoutProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 function Layout({ children }: LayoutProps) {
+  const { isVerified, permission } = useAuthStore();
+  const router = useRouter();
+
+  if (permission !== 'user' || !isVerified) {
+    router.replace('/login');
+    return null;
+  }
+
   return (
     <AuthLayout>
       <Header />
