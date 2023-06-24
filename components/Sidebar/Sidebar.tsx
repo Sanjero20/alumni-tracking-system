@@ -4,6 +4,7 @@ import { MdDashboard, MdAccountCircle } from 'react-icons/md';
 import { FaUserGraduate, FaSchool } from 'react-icons/fa';
 
 import { RiSettings3Fill, RiLogoutCircleLine } from 'react-icons/ri';
+import BtnLogout from '../Buttons/BtnLogout';
 
 type RouteType = {
   route: string;
@@ -51,10 +52,10 @@ function Sidebar() {
               <RiSettings3Fill /> <p className="text-lg font-bold">Settings</p>
             </SideNavLink>
 
-            <button className="m-2 flex items-center gap-2">
+            <BtnLogout className="m-2 flex items-center gap-2">
               <RiLogoutCircleLine />
               <p className="text-lg font-bold">Logout</p>
-            </button>
+            </BtnLogout>
           </ul>
         </nav>
       </div>
