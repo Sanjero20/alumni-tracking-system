@@ -7,7 +7,7 @@ import {
 } from 'firebase/auth';
 
 import { AccountRegister } from '@/types/registration';
-import { AccountType, Permission } from '@/types/account';
+import { AccountType, Permission, UserAccount } from '@/types/account';
 import { getUserAccountDetails } from '../request';
 
 export const logoutUser = () => {
@@ -15,8 +15,7 @@ export const logoutUser = () => {
 };
 
 export const loginUser = async (email: string, password: string) => {
-  let userPermission: Permission = 'user';
-  let isUserVerified = false;
+  let account: UserAccount | null = null;
   let errorMsg: string | null = null;
 
   try {
@@ -26,22 +25,21 @@ export const loginUser = async (email: string, password: string) => {
     if (!auth.currentUser) throw new Error('');
     const userID = auth.currentUser.uid;
 
-    const userData = await getUserAccountDetails(userID);
+    const userAccountData = await getUserAccountDetails(userID);
 
-    if (!userData) throw new Error('');
-    userPermission = userData.permission;
+    if (!userAccountData) throw new Error('No data found');
 
-    if (userData.status !== 'verified') {
-      throw new Error(`auth/account-${userData.status}`);
+    if (userAccountData.status !== 'verified') {
+      throw new Error(`auth/account-${userAccountData.status}`);
     }
 
-    isUserVerified = true;
+    account = userAccountData;
   } catch (error: any) {
     auth.signOut();
     errorMsg = loginErrorHandler(error);
   }
 
-  return { userPermission, isUserVerified, errorMsg };
+  return { account, errorMsg };
 };
 
 export const signUpUser = async (registrationData: AccountRegister) => {
@@ -75,6 +73,9 @@ export const signUpUser = async (registrationData: AccountRegister) => {
     const docRef = doc(accountsCollection, uid);
     // Store user data in the accounts collection
     await setDoc(docRef, userData);
+
+    // Prevent user from automatically going to the main page
+    auth.signOut();
     return null;
   } catch (error: any) {
     return signUpErrorHandler(error.code);
