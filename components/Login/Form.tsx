@@ -1,5 +1,6 @@
 import { FormEvent } from 'react';
 import Button from '../Buttons';
+import Spinner from '../Spinner/Spinner';
 
 type FormProps = {
   email: string;
@@ -42,8 +43,12 @@ function LoginForm({
 
       {error && <p className="font-bold text-red-500">{error}</p>}
 
-      <Button type="submit" className="mx-auto" disabled={isBtnDisabled}>
-        Sign In
+      <Button
+        type="submit"
+        className="mx-auto flex w-36 items-center justify-center"
+        disabled={isBtnDisabled}
+      >
+        {!isBtnDisabled ? <>Sign In</> : <Spinner />}
       </Button>
     </form>
   );
