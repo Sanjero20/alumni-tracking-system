@@ -1,6 +1,7 @@
-import { FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
 import Button from '../Buttons';
 import Spinner from '../Spinner/Spinner';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 type FormProps = {
   email: string;
@@ -21,6 +22,8 @@ function LoginForm({
   isBtnDisabled,
   error,
 }: FormProps) {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <form onSubmit={(e) => handleLogin(e)} className="flex flex-col gap-2">
       {/* Email */}
@@ -33,13 +36,23 @@ function LoginForm({
       />
 
       {/* Password */}
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => handlePassword(e.target.value)}
-        required
-      />
+      <div className="justify relative flex items-center justify-end">
+        <input
+          type={showPassword ? 'text' : 'password'}
+          placeholder="Password"
+          value={password}
+          onChange={(e) => handlePassword(e.target.value)}
+          required
+        />
+
+        <button
+          type="button"
+          className="absolute h-full w-auto px-3 text-gray-500"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </button>
+      </div>
 
       {error && <p className="font-bold text-red-500">{error}</p>}
 
