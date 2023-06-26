@@ -45,7 +45,7 @@ function LoginForm({
 
       <Button
         type="submit"
-        className="mx-auto flex w-36 items-center justify-center"
+        className="mx-auto flex h-10 w-36 items-center justify-center"
         disabled={isBtnDisabled}
       >
         {!isBtnDisabled ? <>Sign In</> : <Spinner />}
