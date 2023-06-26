@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Header from '@/components/Header/Header';
 import AuthLayout from '@/services/auth/authLayout';
@@ -12,10 +12,11 @@ function Layout({ children }: LayoutProps) {
   const { isVerified, permission } = useAuthStore();
   const router = useRouter();
 
-  if (permission !== 'user' || !isVerified) {
-    router.replace('/login');
-    return null;
-  }
+  useEffect(() => {
+    if (permission !== 'user' || !isVerified) {
+      router.replace('/login');
+    }
+  }, [permission, isVerified, router]);
 
   return (
     <AuthLayout>
