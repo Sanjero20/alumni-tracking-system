@@ -7,15 +7,15 @@ type Props = {
 };
 
 function AuthLayout({ children }: Props) {
-  const { user, loading } = useAuthStore();
+  const { user, loading, isVerified } = useAuthStore();
 
   const router = useRouter();
 
   useEffect(() => {
-    if (!user && !loading) {
+    if ((!user && !loading) || !isVerified) {
       router.replace('/login');
     }
-  }, [user, loading, router]);
+  }, [user, loading, isVerified, router]);
 
   // Prevent from displaying page when not authenticated
   if (!user || loading) return null;

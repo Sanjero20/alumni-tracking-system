@@ -51,7 +51,7 @@ function LoginPage() {
   };
 
   // Display nothing when user is not authenticated
-  if ((user && isVerified) || loading) return;
+  if (user || isVerified || loading) return;
 
   return (
     <div className="flex h-screen flex-col items-center justify-center gap-5 md:flex-row md:gap-0">

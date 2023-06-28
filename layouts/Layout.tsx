@@ -13,10 +13,12 @@ function Layout({ children }: LayoutProps) {
   const router = useRouter();
 
   useEffect(() => {
-    if (permission !== 'user' || !isVerified) {
+    if (permission !== 'user') {
       router.replace('/login');
     }
   }, [permission, isVerified, router]);
+
+  if (permission !== 'user') return;
 
   return (
     <AuthLayout>
