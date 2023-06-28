@@ -1,14 +1,11 @@
 type Props = {
-  color?: string;
-  size?: string;
+  className?: string;
 };
 
-function Spinner({ color = 'white', size = '5' }: Props) {
-  let styles = `border-${color} h-${size} w-${size}`;
-
+function Spinner({ className = 'border-white h-5 w-5' }: Props) {
   return (
     <div
-      className={`animate-spin rounded-full border-4 border-solid border-t-transparent ${styles}`}
+      className={`animate-spin rounded-full border-4 border-solid border-t-transparent ${className}`}
     />
   );
 }
