@@ -1,9 +1,8 @@
 import { ReactNode, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Sidebar from '@/components/Sidebar/Sidebar';
-import Header from '@/components/Header/Header';
 import AuthLayout from '@/services/auth/authLayout';
 import { useAuthStore } from '@/stores/user';
-import { useRouter } from 'next/router';
 
 type LayoutProps = {
   children: ReactNode;
@@ -24,12 +23,9 @@ function AdminLayout({ children }: LayoutProps) {
 
   return (
     <AuthLayout>
-      <div className="flex h-screen flex-col">
-        <Header hiddenMenu />
-        <main className="flex h-screen w-full ">
-          <Sidebar />
-          <div className="min-h-full w-full bg-body p-2">{children}</div>
-        </main>
+      <div className="flex h-screen flex-row p-2">
+        <Sidebar />
+        <div className="h-full p-2">{children}</div>
       </div>
     </AuthLayout>
   );

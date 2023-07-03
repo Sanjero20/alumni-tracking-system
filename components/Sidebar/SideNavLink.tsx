@@ -12,8 +12,8 @@ function SideNavLink({ href, children }: LinkProps) {
   const isActive = asPath === href;
 
   const generalStyle = 'p-2 w-full flex gap-2 items-center';
-  const activeStyle = 'bg-primary text-white rounded';
-  const inactiveStyle = '';
+  const activeStyle = 'bg-white text-black rounded';
+  const inactiveStyle = 'text-white';
 
   const linkStyle = isActive ? activeStyle : inactiveStyle;
 

@@ -9,7 +9,7 @@ function LowerNav() {
         <RiSettings3Fill /> <p className="text-lg">Settings</p>
       </SideNavLink>
 
-      <BtnLogout className="m-2 flex items-center gap-2">
+      <BtnLogout className="m-2 flex items-center gap-2 text-white">
         <RiLogoutCircleLine />
         <p className="text-lg">Logout</p>
       </BtnLogout>
